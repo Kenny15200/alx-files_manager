@@ -17,7 +17,7 @@ Redis
 Kue for background processing
 
 **Team Members:**
-Kehinde Opaleye
+Kehinde Opaleye &
 Glory Nwogu
 
 **Timeline:**
