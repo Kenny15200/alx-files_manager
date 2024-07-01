@@ -16,8 +16,13 @@ class DBClient {
             .catch((error) => console.error('Error connecting to MongoDB:', error));
     }
 
-    isAlive() {
-        return this.client.isConnected();
+    async isAlive() {
+        try {
+            await this.client.db("admin").command({ ping: 1 });
+            return true;
+        } catch (e) {
+            return false;
+        }
     }
 
     async nbUsers() {
