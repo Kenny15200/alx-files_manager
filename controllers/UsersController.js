@@ -1,6 +1,7 @@
 import sha1 from 'sha1';
 import { ObjectId } from 'mongodb';
 import dbClient from '../utils/db';
+import User from '../models/User'; // Assuming User model exists
 
 class UsersController {
     static async postNew(req, res) {
@@ -30,6 +31,28 @@ class UsersController {
         res.status(201).json({ id: result.insertedId, email });
     }
 }
+
+const UsersController = {
+  async getMe(req, res) {
+    const token = req.headers['x-token'];
+    if (!token) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    try {
+      const user = await User.findById(userId); // Assuming userId is stored in Redis during authentication
+      if (!user) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
+
+      return res.status(200).json({ id: user._id, email: user.email });
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
+};
+
 
 export default UsersController;
 
