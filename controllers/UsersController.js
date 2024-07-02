@@ -3,7 +3,7 @@ import { ObjectId } from 'mongodb';
 import dbClient from '../utils/db';
 import User from '../models/User'; // Assuming User model exists
 
-class UsersController {
+const UsersController = {
     static async postNew(req, res) {
         const { email, password } = req.body;
 
