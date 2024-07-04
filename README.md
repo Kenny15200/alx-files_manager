@@ -4,7 +4,7 @@ Creating a simple platform to upload and view files, incorporating the following
 
 **User authentication via a token**
 List all files
-Upload a new files
+Upload a new fil
 Change the permission of a file
 View a file
 Generate thumbnails for images
